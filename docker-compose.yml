@@ -10,7 +10,7 @@ services:
 
   frontend:
     build: ./frontend
-    ports:
+    expose:
       - "80:80"
     networks:
       - app-network
