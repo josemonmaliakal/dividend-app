@@ -1,28 +1,17 @@
 <template>
   <header class="bg-white">
-    <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
-      <div class="flex lg:flex-1">
-        <a href="#" class="-m-1.5 p-1.5">        
-          <span><b>QueryB</b></span>
-        </a>
+    <div class="sticky top-0 z-10 border-b border-zinc-950/10 bg-white px-6 py-5 sm:px-8 lg:z-10 lg:flex lg:h-16 lg:items-center lg:py-0 dark:border-white/10 dark:bg-zinc-900">
+      <div class="mx-auto flex w-full max-w-xl items-center justify-between lg:max-w-7xl">
+        <div class="flex items-center gap-2 sm:gap-4">
+          <a aria-label="Home" href="/">
+            <b>QueryB</b>
+          </a>
+        </div>
+        <div class="flex items-center gap-4 sm:gap-8">
+          <a class="text-sm/6 font-medium text-zinc-700 hover:text-zinc-950 dark:text-zinc-300 dark:hover:text-white" href="#">Home <span aria-hidden="true">→</span></a>
+        </div>
       </div>
-      <div class="flex lg:hidden">
-        <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" @click="mobileMenuOpen = true">
-          <span class="sr-only">Open main menu</span>
-          <Bars3Icon class="size-6" aria-hidden="true" />
-        </button>
-      </div>
-      <PopoverGroup class="hidden lg:flex lg:gap-x-12">
-        
-
-        <!--a href="#" class="text-sm/6 font-semibold text-gray-900">Features</a-->
-        
-      </PopoverGroup>
-      <!--div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="#" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
-      </div-->
-    </nav>
-   
+    </div>    
   </header>
 </template>
 

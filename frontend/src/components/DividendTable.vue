@@ -1,43 +1,48 @@
 <template>
-  <div class=" min-dvh">    
-    <div class="p-6">
-      <h2 class="text-2xl font-semibold mb-4">Dividend Payouts - {{ selectedMonthName }} - {{ selectedYear }} </h2>
-      
-      <div class="flex gap-4 mb-4">
-        <select v-model="selectedMonth" @change="fetchDividends" class="border rounded p-2">
-          <option v-for="(m, idx) in months" :key="idx" :value="idx + 1">{{ m }}</option>
-        </select>
-        
-        <select v-model="selectedYear" @change="fetchDividends" class="border rounded p-2">
-          <option v-for="y in years" :key="y" :value="y">{{ y }}</option>
-        </select>
+  <div class="grow p-6 lg:rounded-lg lg:bg-white lg:p-10 lg:ring-1 lg:shadow-xs lg:ring-zinc-950/5 dark:lg:bg-zinc-900 dark:lg:ring-white/10">
+    <div class="mx-auto max-w-6xl">
+      <div class="flex items-end justify-between gap-4">
+        <h1 class="text-2xl/8 font-semibold text-zinc-950 sm:text-xl/8 dark:text-white">
+          Dividend Payouts | {{ selectedMonthName }}  {{ selectedYear }}
+        </h1>
+        <div class="flex gap-4">
+          <select v-model="selectedMonth" @change="fetchDividends" class="border rounded p-2">
+            <option v-for="(m, idx) in months" :key="idx" :value="idx + 1">{{ m }}</option>
+          </select>        
+          <select v-model="selectedYear" @change="fetchDividends" class="border rounded p-2">
+            <option v-for="y in years" :key="y" :value="y">{{ y }}</option>
+          </select>
+        </div>
       </div>
-
-      <div class="overflow-x-auto bg-white shadow-md ">
-        <table class="min-w-full text-sm text-left">
-          <thead class="bg-gray-100 text-gray-700 uppercase text-xs">
-            <tr>
-              <th class="px-6 py-2 text-left">Company</th>
-              <th class="px-6 py-2 text-left">Symbol</th>
-              <th class="px-6 py-2 text-left">Dividend (₹)</th>
-              <th class="px-6 py-2 text-left">Ex-Date</th>
-              <th class="px-6 py-2 text-left">Record Date</th>
-              <th class="px-6 py-2 text-left">Type</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-200">
-            <tr v-for="(d, i) in dividends" :key="i">
-              <td class="text-left px-6 py-4" >{{ d.company }}</td>
-              <td class="text-left px-6 py-4">{{ d.symbol }}</td>
-              <td class="text-left px-6 py-4" >{{ d.dividend }}</td>
-              <td class="text-left px-6 py-4" >{{ formatDate(d.ex_date) }}</td>
-              <td class="text-left px-6 py-4" >{{ formatDate(d.record_date) }}</td>
-              <td class="text-left px-6 py-4" >{{ d.type }}</td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="flow-root">
+      <div class="mt-8 [--gutter:--spacing(6)] lg:[--gutter:--spacing(10)] -mx-(--gutter) overflow-x-auto whitespace-nowrap">
+        <div class="inline-block min-w-full align-middle sm:px-(--gutter)">
+          <table class="min-w-full text-sm text-left">
+            <thead class="bg-gray-100 text-gray-700 uppercase text-xs">
+              <tr>
+                <th class="px-6 py-2 text-left">Company</th>
+                <th class="px-6 py-2 text-left">Symbol</th>
+                <th class="px-6 py-2 text-left">Dividend (₹)</th>
+                <th class="px-6 py-2 text-left">Ex-Date</th>
+                <th class="px-6 py-2 text-left">Record Date</th>
+                <th class="px-6 py-2 text-left">Type</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <tr v-for="(d, i) in dividends" :key="i">
+                <td class="text-left px-6 py-4" >{{ d.company }}</td>
+                <td class="text-left px-6 py-4">{{ d.symbol }}</td>
+                <td class="text-left px-6 py-4" >{{ d.dividend }}</td>
+                <td class="text-left px-6 py-4" >{{ formatDate(d.ex_date) }}</td>
+                <td class="text-left px-6 py-4" >{{ formatDate(d.record_date) }}</td>
+                <td class="text-left px-6 py-4" >{{ d.type }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-  </div>   
+  </div>
 </div>
 </template>
 
