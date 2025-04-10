@@ -47,7 +47,8 @@ for entry in json_data:
     company = entry.get('comp')
     symbol = entry.get('symbol')
     ex_date = datetime.strptime(entry.get('exDate'), '%d-%b-%Y').strftime('%Y-%m-%d')
-    record_date = datetime.strptime(entry.get('recDate'), '%d-%b-%Y').strftime('%Y-%m-%d')  
+    if entry.get('recDate') != '-':
+        record_date = datetime.strptime(entry.get('recDate'), '%d-%b-%Y').strftime('%Y-%m-%d')  
     subject = entry.get('subject', '')
 
     parsed_entries = parse_dividend_subject(subject)
