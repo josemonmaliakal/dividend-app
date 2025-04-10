@@ -23,14 +23,11 @@ body {
     margin-top: 20px;
   }
   
-  th, td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: center;
-  }
+
   
   th {
-    background-color: #eee;
+    background-color: #000;
+    color:#fff
   }
   headlessui-portal-root:empty {
     display: none;

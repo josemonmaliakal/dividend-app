@@ -1,7 +1,11 @@
 <template>
   
     <Header />
-    <DividendTable :month="month" :year="year" :monthName="monthName" />
+    <main>
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:bg-white lg:px-1">
+     <DividendTable :month="month" :year="year" :monthName="monthName" />    
+    </div>
+    </main>
     <Footer />
   
 </template>
