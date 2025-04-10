@@ -14,60 +14,30 @@
           </select>
         </div>
       </div>
-    <div class="flow-root">
-      <div class="overflow-x-auto">
-  <table class="min-w-full divide-y divide-gray-200 text-sm">
-    <thead class="bg-gray-100">
-      <tr>
-        <th class="px-6 py-3 text-left font-medium text-gray-700">Name</th>
-        <th class="px-6 py-3 text-left font-medium text-gray-700">Title</th>
-        <th class="px-6 py-3 text-left font-medium text-gray-700">Email</th>
-        <th class="px-6 py-3 text-left font-medium text-gray-700">Role</th>
-      </tr>
-    </thead>
-    <tbody class="divide-y divide-gray-200">
-      <tr>
-        <td class="px-6 py-4 whitespace-nowrap">John Doe</td>
-        <td class="px-6 py-4 whitespace-nowrap">Software Engineer</td>
-        <td class="px-6 py-4 whitespace-nowrap">john@example.com</td>
-        <td class="px-6 py-4 whitespace-nowrap">Admin</td>
-      </tr>
-      <tr>
-        <td class="px-6 py-4 whitespace-nowrap">Jane Smith</td>
-        <td class="px-6 py-4 whitespace-nowrap">Product Manager</td>
-        <td class="px-6 py-4 whitespace-nowrap">jane@example.com</td>
-        <td class="px-6 py-4 whitespace-nowrap">Editor</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-
-      <div class="mt-8 whitespace-nowrap">
+      <div class="flow-root">
         <div class="overflow-x-auto">
-          <table class="min-w-full text-sm text-left  text-sm/6 divide-y divide-gray-200"  >
-            <thead class="bg-gray-100 text-gray-700 uppercase text-xs">
+          <table class="min-w-full divide-y divide-gray-200 text-sm">
+            <thead class="bg-gray-100">
               <tr>
-                <th class="px-6 py-2 text-left">Company</th>
-                <th class="px-6 py-2 text-left">Symbol</th>
-                <th class="px-6 py-2 text-left">Dividend (₹)</th>
-                <th class="px-6 py-2 text-left">Ex-Date</th>
-                <th class="px-6 py-2 text-left">Record Date</th>
-                <th class="px-6 py-2 text-left">Type</th>
+                <th class="px-6 py-3 text-left font-medium text-gray-700">COMPANY</th>
+                <th class="px-6 py-3 text-left font-medium text-gray-700">SYMBOL</th>
+                <th class="px-6 py-3 text-left font-medium text-gray-700">DIVIDEND (₹)</th>
+                <th class="px-6 py-3 text-left font-medium text-gray-700">EX-DATE</th>
+                <th class="px-6 py-3 text-left font-medium text-gray-700">RECORD DATE</th>
+                <th class="px-6 py-3 text-left font-medium text-gray-700">TYPE</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-200">
-              <tr v-for="(d, i) in dividends" :key="i">
-                <td class="text-left px-6 py-4" >{{ d.company }}</td>
-                <td class="text-left px-6 py-4">{{ d.symbol }}</td>
-                <td class="text-left px-6 py-4" >{{ d.dividend }}</td>
-                <td class="text-left px-6 py-4" >{{ formatDate(d.ex_date) }}</td>
-                <td class="text-left px-6 py-4" >{{ formatDate(d.record_date) }}</td>
-                <td class="text-left px-6 py-4" >{{ d.type }}</td>
+            <tbody class="divide-y divide-gray-200">          
+              <tr  v-for="(d, i) in dividends" :key="i" >
+                <td class="px-6 py-4 whitespace-nowrap">{{d.company}}</td>
+                <td class="px-6 py-4 whitespace-nowrap">{{d.symbol}}</td>
+                <td class="px-6 py-4 whitespace-nowrap">{{ d.dividend }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">{{ formatDate(d.ex_date) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">{{ formatDate(d.record_date) }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">{{ d.type }}</td>
               </tr>
             </tbody>
           </table>
-        </div>
       </div>
     </div>
   </div>
@@ -113,6 +83,5 @@ const fetchDividends = () => {
     })
     .catch(console.error)
 }
-
 onMounted(fetchDividends)
 </script>
