@@ -15,9 +15,37 @@
         </div>
       </div>
     <div class="flow-root">
-      <div class="mt-8 [--gutter:--spacing(6)] lg:[--gutter:--spacing(10)] -mx-(--gutter) overflow-x-auto whitespace-nowrap">
-        <div class="inline-block min-w-full align-middle sm:px-(--gutter)">
-          <table class="min-w-full text-sm text-left">
+      <div class="overflow-x-auto">
+  <table class="min-w-full divide-y divide-gray-200 text-sm">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="px-6 py-3 text-left font-medium text-gray-700">Name</th>
+        <th class="px-6 py-3 text-left font-medium text-gray-700">Title</th>
+        <th class="px-6 py-3 text-left font-medium text-gray-700">Email</th>
+        <th class="px-6 py-3 text-left font-medium text-gray-700">Role</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200">
+      <tr>
+        <td class="px-6 py-4 whitespace-nowrap">John Doe</td>
+        <td class="px-6 py-4 whitespace-nowrap">Software Engineer</td>
+        <td class="px-6 py-4 whitespace-nowrap">john@example.com</td>
+        <td class="px-6 py-4 whitespace-nowrap">Admin</td>
+      </tr>
+      <tr>
+        <td class="px-6 py-4 whitespace-nowrap">Jane Smith</td>
+        <td class="px-6 py-4 whitespace-nowrap">Product Manager</td>
+        <td class="px-6 py-4 whitespace-nowrap">jane@example.com</td>
+        <td class="px-6 py-4 whitespace-nowrap">Editor</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+      <div class="mt-8 whitespace-nowrap">
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm text-left  text-sm/6 divide-y divide-gray-200"  >
             <thead class="bg-gray-100 text-gray-700 uppercase text-xs">
               <tr>
                 <th class="px-6 py-2 text-left">Company</th>
@@ -47,6 +75,7 @@
 </template>
 
 <script setup>
+
 import { ref, computed, onMounted } from 'vue'
 import axios from 'axios'
 
