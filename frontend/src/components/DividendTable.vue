@@ -25,17 +25,36 @@
                 <th class="px-6 py-3 text-left font-medium text-gray-700">EX-DATE</th>
                 <th class="px-6 py-3 text-left font-medium text-gray-700">RECORD DATE</th>
                 <th class="px-6 py-3 text-left font-medium text-gray-700">TYPE</th>
+                <th class="px-6 py-3 text-center">More</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">          
-              <tr  v-for="(d, i) in dividends" :key="i" >
-                <td class="px-6 py-4 whitespace-nowrap">{{d.company}}</td>
-                <td class="px-6 py-4 whitespace-nowrap">{{d.symbol}}</td>
-                <td class="px-6 py-4 whitespace-nowrap">{{ d.dividend }}</td>
-                <td class="px-6 py-4 whitespace-nowrap">{{ formatDate(d.ex_date) }}</td>
-                <td class="px-6 py-4 whitespace-nowrap">{{ formatDate(d.record_date) }}</td>
-                <td class="px-6 py-4 whitespace-nowrap">{{ d.type }}</td>
+              <template v-for="(d, i) in dividends" :key="i">
+              <!-- Main Row -->
+              <tr @click="toggleExpanded(i)" class="cursor-pointer hover:bg-gray-50">
+                <td class="px-6 py-4">{{ d.company }}</td>
+                <td>{{ d.symbol }}</td>
+                <td class="text-right">{{ d.dividend }}</td>
+                <td class="text-center">{{ formatDate(d.ex_date) }}</td>
+                <td class="text-center">{{ formatDate(d.record_date) }}</td>
+                <td class="text-center">{{ d.type }}</td>
+                <td class="text-center text-blue-500">▼</td>
               </tr>
+
+              <!-- Expanded Row -->
+              <tr v-if="expandedRow === i">
+                <td colspan="7" class="px-6 pb-4 pt-2 bg-gray-50">
+                  <Suspense>
+                    <template #default>
+                      <LazyChart :history="d.history" />
+                    </template>
+                    <template #fallback>
+                      <p>Loading chart...</p>
+                    </template>
+                  </Suspense>
+                </td>
+              </tr>
+            </template>
             </tbody>
           </table>
       </div>
@@ -46,8 +65,9 @@
 
 <script setup>
 
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted , defineAsyncComponent} from 'vue'
 import axios from 'axios'
+import DividendChart from '@/components/DividendChart.vue'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
@@ -63,7 +83,22 @@ const selectedYear = ref(new Date().getFullYear())
 
 const selectedMonthName = computed(() => months[selectedMonth.value - 1])
 
+
+
+// State
 const dividends = ref([])
+
+const expandedRow = ref(0) 
+// Lazy component
+const LazyChart = defineAsyncComponent(() => import('@/components/DividendChart.vue'))
+
+
+// Toggle
+const toggleExpanded = (index) => {
+  expandedRow.value = expandedRow.value === index ? null : index
+}
+
+
 
 const formatDate = (dateStr) => {
   if (!dateStr) return ''
@@ -83,5 +118,6 @@ const fetchDividends = () => {
     })
     .catch(console.error)
 }
+
 onMounted(fetchDividends)
 </script>
